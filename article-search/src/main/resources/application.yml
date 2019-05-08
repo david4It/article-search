@@ -1,0 +1,16 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: elasticsearch
+  elasticsearch:
+    jest:
+      uris:
+        - http://localhost:9200
+      read-timeout: 60000
+      connection-timeout: 60000
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: Passw0rd
+    url: jdbc:mysql://localhost:3306/search?characterEncoding=utf8&serverTimezone=UTC
