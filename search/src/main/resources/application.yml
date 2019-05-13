@@ -12,4 +12,12 @@ spring:
   data:
     elasticsearch:
       cluster-name: my-application
-      cluster-nodes: 127.0.0.1:9201,127.0.0.1:9202,127.0.0.1:9203
+      cluster-nodes: 127.0.0.1:9300
+  elasticsearch:
+    rest:
+      uris: ["http://127.0.0.1:9201","http://127.0.0.1:9202","http://127.0.0.1:9203"]
+
+logging:
+  level:
+    com.netflix.discovery: 'info'
+    org.springframework.boot: 'info'
