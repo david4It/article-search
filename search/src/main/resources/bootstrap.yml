@@ -1,0 +1,43 @@
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: http://192.168.1.201:9001/eureka
+  instance:
+    prefer-ip-address: true
+
+
+spring:
+  zipkin:
+    sender:
+      type: RABBIT
+    rabbitmq:
+      queue: zipkin
+  sleuth:
+    sampler:
+      probability: 1.0
+  rabbitmq:
+    host: ${dev_rabbitmq.host}
+    port: ${dev_rabbitmq.port}
+    username: ${dev_rabbitmq.username}
+    password: ${dev_rabbitmq.password}
+    virtual-host: /
+    publisher-confirms: true  #  消息发送到交换机确认机制,是否确认回调
+    publisher-returns: true
+  cloud:
+    config:
+      failFast: true
+      name: DevConfig
+      profile: ${config.profile:dev}
+      discovery:
+        enabled: true
+        service-id: configServer
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS

@@ -1,0 +1,15 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: searchServer
+  datasource:
+    platform: mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${dev_datasource.url}
+    username: ${dev_datasource.username}
+    password: ${dev_datasource.password}
+  data:
+    elasticsearch:
+      cluster-name: my-application
+      cluster-nodes: 127.0.0.1:9201,127.0.0.1:9202,127.0.0.1:9203
