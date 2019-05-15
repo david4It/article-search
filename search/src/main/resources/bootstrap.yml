@@ -41,3 +41,11 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+
+logging:
+  level:
+    org:
+      springframework:
+        data:
+          elasticsearch:
+            core: DEBUG

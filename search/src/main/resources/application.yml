@@ -11,11 +11,11 @@ spring:
     password: ${dev_datasource.password}
   data:
     elasticsearch:
-      cluster-name: my-application
+      cluster-name: elasticsearch
       cluster-nodes: 127.0.0.1:9300
   elasticsearch:
     rest:
-      uris: ["http://127.0.0.1:9201","http://127.0.0.1:9202","http://127.0.0.1:9203"]
+      uris: ["http://127.0.0.1:9200"]
 
 logging:
   level:
