@@ -21,3 +21,9 @@ logging:
   level:
     com.netflix.discovery: 'info'
     org.springframework.boot: 'info'
+
+word-filter:
+  keyword:
+    location: /filter/dictionary.txt
+    distance: 2
+    symbol: '*'

@@ -18,21 +18,23 @@ import java.util.*;
 @Slf4j
 @RestController
 public class SearchController {
-    @Autowired SearchService service;
+  @Autowired SearchService searchService;
 
-    @PostMapping("/policy")
-    public ComJsonUtil searchPolicy(@RequestBody ComJsonUtil comJsonUtil) throws Exception{
-        ComJsonUtil jUBean = JsonMapper.string2Obj(JsonMapper.obj2String(comJsonUtil),new TypeReference<ComJsonUtil>() {});
-        Map<String,Object> requestMap = (Map)jUBean.getData();
-        ExtLimit limit = jUBean.getExtlimit();
-        if (requestMap == null || requestMap.size() == 0) {
-            log.info("Request map is empty or null");
-            jUBean.getInfo().setMessage("查询数据为空");
-            jUBean.getInfo().setStatus(FinalJson.STATUS_NOTACCEPTABLE);
-        } else {
-            List<Policy> policies = service.findPolicyByElasticsearch(requestMap, limit);
-            jUBean.setData(policies);
-        }
-        return jUBean;
+  @PostMapping("/policy")
+  public ComJsonUtil searchPolicy(@RequestBody ComJsonUtil comJsonUtil) throws Exception {
+    ComJsonUtil jUBean =
+        JsonMapper.string2Obj(
+            JsonMapper.obj2String(comJsonUtil), new TypeReference<ComJsonUtil>() {});
+    Map<String, Object> requestMap = (Map) jUBean.getData();
+    ExtLimit limit = jUBean.getExtlimit();
+    if (requestMap == null || requestMap.size() == 0) {
+      log.info("Request map is empty or null");
+      jUBean.getInfo().setMessage("查询数据为空");
+      jUBean.getInfo().setStatus(FinalJson.STATUS_NOTACCEPTABLE);
+    } else {
+      List<Policy> policies = searchService.findPolicyByElasticsearch(requestMap, limit);
+      jUBean.setData(policies);
     }
+    return jUBean;
+  }
 }
